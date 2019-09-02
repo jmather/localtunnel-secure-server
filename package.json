@@ -1,0 +1,32 @@
+{
+  "name": "localtunnel-secure-server",
+  "version": "0.1.0",
+  "description": "An augmentation of LocalTunnel Server that adds SSL and basic authentication to LocalTunnel.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/jmather/localtunnel-secure-server#readme",
+  "bugs": {
+    "url": "https://github.com/jmather/localtunnel-secure-server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmather/localtunnel-secure-server.git"
+  },
+  "bin": {
+    "ltss": "./cli.js"
+  },
+  "author": "Jacob Mather <jmather@jmather.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cli": "^1.0.1",
+    "debug": "^3.1.0",
+    "esm": "3.0.34",
+    "localtunnel-server": "https://github.com/jmather/server.git",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "localtunnel": "^1.9.2"
+  }
+}

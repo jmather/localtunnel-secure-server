@@ -27,7 +27,7 @@ Options:
   -h, --help             Display help and usage details
 ```
 
-## Example Usage
+## Example Implementation
 
 ### CLI
 ```bash
@@ -35,3 +35,41 @@ $ ./cli.js --secure --secret foo
 server listening on: https://127.0.0.1:4443
 ```
 
+### Code
+
+```javascript
+require = require("esm")(module/*, options*/);
+const serverBuilder = require('../lib/server').default;
+
+const options = {
+    address: '127.0.0.1',
+    port: '4443',
+    domain: 'localtest.me',
+    cert: __dirname + '/../cert/server-cert.pem',
+    key: __dirname + '/../cert/server-key.pem',
+    secret: 'foo',
+    secure: true,
+    sockets: 20,
+};
+
+const server = serverBuilder(options);
+
+server.listen(options.port, options.address, () => {
+    const protocol = (options.secure) ? 'https' : 'http';
+    console.log(`server listening at ${protocol}://${server.address().address}:${server.address().port}`);
+});
+```
+
+## Example Usage
+
+```javascript
+const localtunnel = require('localtunnel');
+const tunnel = localtunnel('8080', { local_host: '127.0.0.1', host: 'https://:foo@localtest.me:4443' }, (err, tun) => {
+    if (err) {
+        console.error("Got an error opening the tunnel", err);
+        return;
+    }
+
+    console.log(`Listening at ${tun.url}`);
+});
+```
